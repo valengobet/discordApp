@@ -7,26 +7,22 @@ def getHorariosDisponibles(dia, mes):
     # Validar entrada
     if not (1 <= mes <= 12):
         raise ValueError("El mes debe estar entre 1 y 12.")
-    if not (1 <= dia <= 31):  # Puedes ajustar la validación del día según el mes específico
+    if not (1 <= dia <= 31): 
         raise ValueError("El día debe estar entre 1 y 31.")
 
-    # Formatear día y mes para que siempre tengan dos dígitos
     dia_str = f"{dia:02d}"
     mes_str = f"{mes:02d}"
 
-    # URL de la API
     api_url = 'https://core-booking.wonasports.com/api/complejo/70222949cc0db89ab32c9969754d4758/availableDates'
 
-    # Carga útil (payload)
     payload = {
         "filtros": {
-            "deporte": 1,      # 1 puede ser el código para fútbol
-            "techada": 0       # 0 indica que buscas canchas al aire libre
+            "deporte": 1,      
+            "techada": 0       
         },
-        "fecha": f"2024-{mes_str}-{dia_str}"  # Fecha para la cual estás buscando horarios
+        "fecha": f"2024-{mes_str}-{dia_str}"  
     }
 
-    # Encabezados de la solicitud
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json, text/plain, */*',
@@ -37,10 +33,8 @@ def getHorariosDisponibles(dia, mes):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0',
     }
 
-    # Realizamos la solicitud POST a la API
     response = requests.post(api_url, json=payload, headers=headers)
 
-    # Decodificar el contenido de bytes a una cadena
     data_str = response.content.decode('utf-8')
 
 

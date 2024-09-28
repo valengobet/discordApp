@@ -58,6 +58,5 @@ async def main():
     app_id = os.getenv("APP_ID")
     await install_global_commands(app_id, ALL_COMMANDS)
 
-# Ejecutar la función principal
 if __name__ == "__main__":
     asyncio.run(main())

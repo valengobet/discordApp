@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Your public key can be found on your application in the Developer Portal
 PUBLIC_KEY = os.getenv("PUBLIC_KEY")
 
 app = FastAPI()
