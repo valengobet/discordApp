@@ -52,7 +52,14 @@ AVAILABLES_DATES = {
   'contexts': [0, 1, 2]
 }
 
-ALL_COMMANDS = [TEST_COMMAND, RANDOM_TEAMS_COMMAND, AVAILABLES_DATES]
+CLIMA = {
+  'name': 'clima',
+  'description': 'Detalles del clima',
+  'type': 1,
+  'integration_types': [0, 1],
+  'contexts': [0, 1, 2]
+}
+ALL_COMMANDS = [TEST_COMMAND, RANDOM_TEAMS_COMMAND, AVAILABLES_DATES, CLIMA]
 
 async def main():
     app_id = os.getenv("APP_ID")

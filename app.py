@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Request, HTTPException
 import os
-import json
-from discord_interactions import verify_key_decorator, InteractionType, InteractionResponseType
+from discord_interactions import InteractionType, InteractionResponseType
 import uvicorn
 from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
-from funciones import getHorariosDisponibles, getRandomTeams
+from funciones import getHorariosDisponibles, getRandomTeams, clima_fecha
 from dotenv import load_dotenv
+from datetime import date
 
 load_dotenv()
 
@@ -71,6 +71,19 @@ async def root(req: Request):
                     "content": getRandomTeams(jugadores)
                 }
             }
+        
+        if(name == 'clima'):
+            dia = date.today().day
+            mes = date.today().month
+            print(dia)
+            print(mes)
+            return {
+                "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                "data": {
+                    "content": clima_fecha(dia,mes)
+                }
+            }
+
         
         raise HTTPException(status_code=400, detail=f"unknown command: {name}")
     
